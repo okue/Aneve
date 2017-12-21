@@ -1,0 +1,90 @@
+<html>
+<head>
+  <title>Aneve</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+  <script src="http://beta.blockchain.z.com/static/client/lib/eth-client.min.js"></script>
+  <script type="text/javascript" src="./js/setting.js"></script>
+  <script type="text/javascript" src="./js/api.js"></script>
+  <script type="text/javascript" src="./js/key.js"></script>
+</head>
+<body>
+  <h1><font color="red">AN</font>onymous <font color="red">E</font>-<font color="red">V</font>oting System on <font color="red">E</font>thereum</h1>
+  <hr>
+
+  <h2>Create Account</h2>
+    <input type="button" value="create account" onclick="createAcc()"/>
+    <h3 id="createresult">nothing</h3>
+    <input type="button" value="check my address" onclick="getMyAddr()"/>
+    <h3 id="myaddress">nothing</h3>
+  <hr>
+
+  <h2>Start Voting</h2>
+    <input type="button" value="start" onclick="createAneve()"/>
+    <h3 id="startresult">nothing</h3>
+    <input type="button" value="check" onclick="checkAneveAddr()"/>
+    <h3 id="aneveaddress">nothing</h3>
+  <hr>
+
+  <h2>Generate Voting Key (private key)</h2>
+    <h3 id="modulo">modulo: nothing</h3>
+    <h3 id="generator">generator: nothing</h3>
+    <input type="number" id="vkey" />
+    <input type="button" value="generate voting key" onclick="genKey()"/>
+    <input type="button" value="check voting keys" onclick="checkKey()"/>
+    <h3 id="genresult">nothing</h3>
+  <hr>
+
+  <h2>Publish Voting Key (public key)</h2>
+    <input type="button" value="publish voting key" onclick="publishKey()"/>
+    <h3 id="publishresult">nothing</h3>
+  <hr>
+
+  <h2>Calculate Magic Key</h2>
+    <input type="button" value="finish" onclick="calcMagicKey()">
+    <h3 id="calcresult">nothing</h3>
+  <hr>
+
+  <h2>Vote anonymously</h2>
+    <form name="voteForm">
+      <input type="radio" name="voteFormRadio" value="1" checked>Yes
+      <input type="radio" name="voteFormRadio" value="0">No
+      <input type="button" value="vote" onclick="vote(voteForm)"/>
+    </form>
+    <h3 id="voteresult">nothing</h3>
+  <hr>
+
+  <h2>Count</h2>
+    <input type="button" value="count" onclick="count()"/>
+    <h3 id="countresult">nothing</h3>
+  <hr>
+
+
+  <h2>Reset</h2>
+    <input type="button" value="reset" onclick="reset()"/>
+    <h3 id="resetresult">nothing</h3>
+  <hr>
+
+  <h2>Participants</h2>
+    <input type="button" value="check" onclick="participants()"/>
+    <h3 id="participants">nothing</h3>
+  <hr>
+
+  <script type="text/javascript">
+    getAccAndDo(contract => {
+      var _vc = localStorage.getItem("votingcode")
+      contractCall(contract, 'modulo', [_vc])
+      .then(res => {
+        var restext = res.join(',')
+        localStorage.setItem('modulo', restext)
+        document.getElementById("modulo").innerText = "modulo: " + restext
+      }).then(() => {
+        return contractCall(contract, 'generator', [_vc])
+      }).then(res => {
+        var restext = res.join(',')
+        localStorage.setItem('generator', restext)
+        document.getElementById("generator").innerText = "generator: " + restext
+      })
+    })
+  </script>
+</body>
+</html>

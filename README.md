@@ -11,3 +11,4 @@ References:
 
 <img src="https://raw.githubusercontent.com/okue/Aneve/master/src/aneve_demo.gif?token=AM_eIFcCbH1Z2x2Esry5WDJKAPsVebonks5aO4jOwA%3D%3D" width="70%">
 
+Using [GMO blockchain service](guide.blockchain.z.com/ja)

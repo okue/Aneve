@@ -1,10 +1,10 @@
 //////////////////////////////////////////////////////////////////////
 // call contract method
-// https://guide.blockchain.conoha.jp/ja/docs/dapp/dev/call/
+// https://guide.blockchain.z.com/ja/docs/dapp/dev/call/ 
 //////////////////////////////////////////////////////////////////////
 
 const CNSADDRESS = "0xa199a36e35849729eb08a2743af71d8290e01ba8"
-const BASEURL = 'http://beta.blockchain.z.com'
+const BASEURL = 'http://api.blockchain.z.com'
 const PASSWD  = "gmo0"
 const CONTRACTNAME = 'ProxyController'
 const ABI     = [
